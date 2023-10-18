@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passwords</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            
+        }
+        li {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 50px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+        }
+        p{
+            margin-right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Passwords: Keep Them Safe!!!</h1>
+    <% if (data.length === 0) { %>
+        <center><p>No details found/Empty.</p></center>
+    <% } else { %>
+        <ol>
+            <% const sortedData = data.reduce((result, item) => {
+                if (item.website && item.password) {
+                    result.unshift(item); // Add items with both website and password at the beginning
+                } else {
+                    result.push(item); // Add items with missing or empty fields at the end
+                }
+                return result;
+            }, []);
+            %>
+            <% sortedData.forEach((item, index) => { %>
+                <li>
+                    <p><strong>Website/Domain Name:</strong> <%= item.website || 'N/A' %></p><br>
+                    <p><strong>Password:</strong> <span id="password<%= index %>"><%= '********' %></span></p>
+                    <button onclick="togglePassword(<%= index %>, '<%= item.password %>')">Show/Hide Password</button>
+                    <button onclick="deletepassword(<%= index %>)">Delete</button>
+                </li>
+            <% }); %>
+        </ol>
+    <% } %>
+    
+    <script>
+        function togglePassword(index, actualPassword) {
+            const passwordElement = document.getElementById('password' + index);
+            if (passwordElement.textContent === '********') {
+                passwordElement.textContent = actualPassword;
+            } else {
+                passwordElement.textContent = '********';
+            }
+        }
+                
+        function deletepassword(index) {
+        if (confirm("Are you sure you want to delete this Password Details?")) {
+            // Send an AJAX request to delete the card
+            fetch(`/deletepassword?index=${index}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Reload the page or update the card list
+                    location.reload();
+                } else {
+                    alert("Failed to delete the password. Please try again later.");
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting password:', error);
+                alert("An error occurred while deleting the note. Please try again later.");
+            });
+        }
+    }
+    </script>
+</body>
+
+
+
+</html>
