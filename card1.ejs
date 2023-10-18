@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Proofs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            justify-content: center;
+            padding: 10px;
+        }
+        .item {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 40px;
+            border-radius: 5px;
+            width: calc(33.33% - 20px); /* Distribute items in 3 columns */
+            box-sizing: border-box;
+            border: 3px solid grey;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Your Credit/Debit CARD Details: Keep Them Safe!!!</h1>
+    <div class="container">
+        <% if (data.length === 0) { %>
+            <p>No details found/Empty</p>
+        <% }else{%>
+        <% data.forEach((item) => { %>
+            <div class="item">
+                <strong>Card Number:</strong> <%= item.cardnumber %><br>
+                <strong>Expiration Date:</strong> <%= item.expirationdate %><br>
+                <strong>CVV Number:</strong> <%= item.cvv%><br>
+                <% if (item.Image) { %>
+                    <p style="font-size: 20px;border: 2px solid gray;border-radius: 20px;margin-right: 4px;text-align: center;"><a href="<%= item.Image%>" target="_blank">view image</a></p><br>
+                <% } %>
+                <button onclick="deleteCard(<%= index %>)">Delete</button>
+            </div>
+        <% }); %>
+        <% } %>
+    </div>
+    <script>
+            function deleteCard(index) {
+        if (confirm("Are you sure you want to delete this card?")) {
+            // Send an AJAX request to delete the card
+            fetch(`/deletecard?index=${index}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Reload the page or update the card list
+                    location.reload();
+                } else {
+                    alert("Failed to delete the card. Please try again later.");
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting card:', error);
+                alert("An error occurred while deleting the card. Please try again later.");
+            });
+        }
+    }
+    </script>
+</body>
+</html>
