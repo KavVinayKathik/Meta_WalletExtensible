@@ -1,0 +1,74 @@
+<html lang="en">
+    <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: cornsilk;
+        }
+        form{
+            color: black;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height: 400px;
+            border: 3px solid black;
+            border-radius: 10px;
+            position: relative;
+            left: 100px;
+            top: 100px;
+            background-color: aliceblue;
+            align-items: center;
+            
+        }
+        input[type=text],input[type=submit],input[type=date]{
+            margin: 5px;
+            font-size: 20px;
+            width: 300px;
+            height: 40px;
+            align-items: center;
+
+        }
+        label{
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+        #add-credit-card-form{
+            display: flex;
+            flex-direction: row;
+            padding: 30px;
+        }
+        p{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 60px;margin: 10px;">Meta Wallet</h1>
+    <!-- Add Credit Card Details Form -->
+    <div id="add-credit-card-form" >
+        <h2 style="position: relative;left: 520px;bottom: 30px;;font-size: 40px;">Credit/Debit Card Manager</h2>
+        <form action="carddetails" method="post" enctype="multipart/form-data">
+           
+
+            <label for="cardnumber">Card Number:</label>
+            <input type="text" id="cardnumber" name="cardnumber" required><br>
+            
+            <label for="expirationdate">Expiration Date:</label>
+            <input type="date" id="expirationdate" name="expirationdate" required><br>
+            <label for="cvv">CVV Number:</label>
+            <input type="text" id="cvv" name="cvv" required><br>
+            <label for="image">Upload Image Below As</label><br>
+            <input type="file" name="image" id="image">
+            
+            <input type="submit" value="Add Card">
+        </form>
+    </div>
+    <p>Store Your Card Details Instantly!! <br> To Your Datastore</p>
+    
+</body>
+</html>

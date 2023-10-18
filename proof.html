@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body{
+            background-color: cornsilk;
+        }
+        form{
+            color: black;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height: fit-content;
+            border: 3px solid black;
+            border-radius: 10px;
+            position: relative;
+            left: 100px;
+            top: 200px;
+            background-color: aliceblue;
+            align-items: center;
+            
+        }
+        input[type=text],input[type=submit],input[type=date]{
+            margin: 5px;
+            font-size: 20px;
+            width: 300px;
+            height: 40px;
+            align-items: center;
+
+        }
+        label{
+            font-size: 25px;
+            margin: 10px;
+        }
+        #add-proof-id-form{
+            display: flex;
+            flex-direction: row ;
+            padding: 0px;
+            position: relative;
+            left: 400px;
+            bottom: 220px;
+        }
+</style>
+</head>
+<body>
+    <h1 style="font-size: 60px;">Meta Wallet</h1>
+    <div id="add-proof-id-form" >
+        <h2 style="font-size: 40px;position: relative;top: 200px;right: 20px;">ID Proof Manager</h2>
+        <form action="/idproof" method="post" enctype="multipart/form-data">
+            <label for="prooftype">ID-Proof Type:</label>
+            <select name="prooftype" id="prooftype" style="font-size: 20px;">
+                <option value="Aadhar">Aadhar Card</option>
+                <option value="PAN">PAN Card</option>
+                <option value="Driving Licence">Driving Licence</option>
+                <option value="ID Card">ID Card</option>
+              </select>
+            <label for="name">Name As Per ID:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="proofnumber">ID-Proof Number:</label>
+            <input type="text" id="proofnumber" name="proofnumber" required><br>
+            <label for="image">Upload Image Below</label><br>
+            <input type="file" name="image" id="image">
+            <!-- Add more fields for proof ID details as needed -->
+            
+            <input type="submit" value="Store Details">
+        </form>
+    </div>
+</body>
+</html>

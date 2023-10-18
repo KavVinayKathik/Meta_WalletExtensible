@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 60px;
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color:rgb(35, 158, 206) ;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .signup-link a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 80px;margin: 30px;">Meta Info <span>  </span><br>Manager!!</h1>
+    <div class="container">
+        <h1>Login Here!!!</h1>
+        <h2>Enter Your Credentials</h2>
+        <form action="retrievelogin" method="post" onsubmit="https:/localhost:4000/dashboard">
+            <label for="email">Email-Id:</label><br>
+            <input type="email" name="email" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" required><br>
+            <input type="submit" value="Login" onclick="https:/localhost:4000/dashboard">
+        </form>
+        <div class="signup-link">
+            Don't have an account? <a href="http://localhost:4000/signup">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

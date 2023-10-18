@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Password Manager</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: left;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        header h1 {
+            background-color: #83b7eb;
+            padding: 20px;
+            animation-name: head;
+            animation-fill-mode: forwards;
+            animation-delay: 0s;
+            animation-iteration-count: 1;
+            animation-duration: 3s;
+            animation-direction: normal;
+            margin-left: 60px;
+        }
+        @keyframes head {
+            0%{
+                font-size:0px;
+            }
+            50%{
+                position: relative;
+                right: 1px;
+            }
+            100%{
+                font-size:80px;
+                position: relative;
+                right: 100px;
+
+            }
+            
+        }
+
+        /* User profile styles */
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+       
+
+        
+
+        /* Section styles */
+        section {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 0 20px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        li span {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        /* Link button styles */
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1a5176;
+            color: #56cfd5;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #1b98ec;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            font-size: 60px;
+            position: sticky;right:1150px;top:200px;
+        }
+
+        .dropdown-content {
+            padding: 5px;
+            display: none;
+            position: absolute;
+            background-color: #83b7eb;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 30px;
+        }
+
+        .dropdown .button {
+            font-size: 25px;
+            border-radius: 20px;
+        }
+
+        .dropdown-content button:hover {
+            font-size: 30px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display:flex;
+            flex-direction: column;
+        }
+
+        .dropdown:hover .button {
+            background-color: #0da1c6;
+        }
+
+        /* Styles for the form container */
+        .container button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            margin: 40px;
+            font-size: 50px;
+            width: fit-content;
+            border-radius: 20px;
+            background-color: #2980b9;
+        }
+
+        .container button:hover {
+            font-size: 70px;
+        }
+
+        .container {
+            padding: 60px;
+            margin: 50px;
+            border-radius: 80%;
+            position:relative;
+            bottom: 200px;
+            background-color: #97bdc1;
+        }
+
+        .right {
+            animation-name: slide;
+            animation-duration: 6s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        .left {
+            animation-name: slide1;
+            animation-duration: 6s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes slide {
+            0% {
+                display: none;
+                margin-right: -200px;
+                opacity: 0;
+            }
+            100% {
+                margin-right: 50;
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide1 {
+            0% {
+                display: none;
+                margin-left: -200px;
+                opacity: 0;
+            }
+            100% {
+                margin-left: 50;
+                opacity: 1;
+            }
+        }
+
+        a {
+            color: #f7fbfc;
+        }
+
+        #user-info {
+            border: 4px solid rgb(107, 187, 219);border-radius: 20px;padding: 20px;
+            opacity: 0.4;
+            background-image: linear-gradient(to right, rgb(19, 157, 211), rgb(228, 225, 228), rgb(127, 139, 144));
+        background-position: 0% 50%;
+    display: flex;
+    flex-direction: column;
+    animation-name: user;
+    animation-duration: 8s;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    background-size: 200% 100%; /* Adjust the size as needed */
+    animation-direction:alternate ;
+}
+
+@keyframes user {
+    0% {
+        background-image: linear-gradient(to right, rgb(19, 157, 211), rgb(228, 225, 228), rgb(127, 139, 144));
+        background-position: 0% 50%;
+    }
+    50%{
+        background-image: linear-gradient(to right, rgb(19, 157, 211), rgb(228, 225, 228), rgb(127, 139, 144));
+        background-position: 0% 110%;
+    }
+    
+    100% {
+        background-image: linear-gradient(to right, rgb(46, 187, 243), rgb(237, 221, 237), rgb(63, 161, 206));
+        background-position: 100% 50%;
+        opacity: 1;
+    }
+}
+
+#user-info:hover {
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Adjust the cubic-bezier values for desired smoothness */
+}
+
+
+        span{
+            background-color: #1a5176;
+            border-radius: 20px;
+            color: #f5f5f5;
+            
+        }
+
+
+        #an a{
+            background-color: #1a5176;font-size: 30px;color: #f5f5f5;border-radius: 30px;padding: 8px;position: relative;left: 550px;animation-name: a;animation-duration: 4s;animation-fill-mode: forwards;border: 5px solid silver;
+            animation-delay: 4s;
+}
+@keyframes a {
+    0%{
+        position: relative;
+        left: 550px;
+        display: none;
+
+    }
+    100%{
+        position: relative;
+        transform: translateY(top,100px);
+
+    }
+}
+       /* ... Your existing CSS ... */
+
+/* Responsive styles */
+
+ @media (max-width:1200px) {
+    body{
+        padding: 10px;
+    }
+    header{
+        flex-direction:column
+
+    }
+    #user-info{
+        height: 100px;
+        width: fit-content;
+        border: none;
+        padding: 10px;
+        margin: 10px;
+    }
+    #user-info h1{
+        font-size:20px ;
+    }
+    .container button a{
+        font-size: 20px;
+    }
+    .container{
+        position: relative;
+        bottom: 280px;
+        left: 40px;
+    }
+    .dropdown{
+        position: relative;
+        left: -210px;
+        top:-40px;
+        margin: 20px;
+        flex-direction: row;
+        
+        
+    }
+    
+    #an a{
+        position: relative;
+        left: 220px;
+        bottom: 50px;
+    }    
+    .dropdown.button.dropdown-content{
+        font-size: 4px;
+        width: fit-content;
+    }
+}
+@media (max-width:768px){
+    header h1{
+        position: relative;
+        left:20px
+    }
+    #links{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .container{
+        position: relative;
+        bottom: 50px;
+    }
+    .dropdown{
+        display: none;
+    }
+    #an a{
+        font-size: 20px;
+        position: relative;
+        bottom: 200px;
+        right: 40px;
+    }
+}
+#services{
+            display: none;
+        }
+
+        #services.show {
+            display: block;
+            animation: fadeIn 1s ease-in-out;
+            animation-duration: 4s;
+            background-color: cornflowerblue;
+            margin: 50px;
+            padding: 50px;
+
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }  
+    #links button a{
+        color: #f0f2f4;
+        font-size: 25px;
+        margin: 20px;
+        font-family:'Times New Roman', Times, serif;
+    }    
+    #links button{
+        background-color:#3498db;
+        border-radius: 60px;
+
+
+    }
+    #links button a:hover{
+        font-size: 40px;
+    }
+    #links {
+        display: flex;
+        flex-direction: row;
+    }
+
+    </style>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+    <header>
+        <a href="#services" id="show-services" style="background-color: #1a5176;font-size: 30px;color: #f5f5f5;border-radius: 30px;padding: 8px;">Services</a>
+        <h1>Meta Wallet</h1>
+        <div id="user-info">
+         
+            <p style="font-size: 30px;padding: 5px;color: rgb(40, 20, 48);font-family: 'Times New Roman', Times, serif;">Name: <span id="full-name"></span></p>
+            <p style="font-size: 30px;padding: 10px;color:rgb(19, 51, 66);font-family: 'Times New Roman', Times, serif;">Email: <span id="user-email"></span></p>
+        </div>
+    </header>
+    <nav id="links">
+        <button id="add-password-button" class="button"><a href="http://localhost:4000/sample"> Add Passwords</a></button>
+        <button id="add-credit-card-button" class="button"><a href="http://localhost:4000/card"> Add Credit Card Details</a></button>
+        <button id="add-proof-id-button" class="button"><a href="http://localhost:4000/proof">Add ID Proof's</a></button>
+        <button id="add-notes-button" class="button"><a href="http://localhost:4000/blank">Add Notes/Store Files</a></button>
+    </nav>
+    <div class="dropdown">
+        <button class="button" style="font-size: 30px;border-radius: 20px;padding: 6px;">Add Info</button>
+        <div class="dropdown-content">
+            <button id="add-password-button" class="button"><a href="http://localhost:4000/sample"> Add Passwords</a></button>
+            <button id="add-credit-card-button" class="button"><a href="http://localhost:4000/card"> Add Credit Card Details</a></button>
+            <button id="add-proof-id-button" class="button"><a href="http://localhost:4000/proof">Add ID Proof's</a></button>
+            <button id="add-notes-button" class="button"><a href="http://localhost:4000/blank">Add Notes</a></button>
+        </div>
+    </div>
+    <section id="an">
+    <a href="http://localhost:4000/Login">Logout</a></section>
+    <div class="container">
+        <button class="right"><a href="http://localhost:4000/index">View Passwords</a></button>
+        <button class="left"><a href="http://localhost:4000/proof1">View ID-Proofs</a></button>
+        <button class="right"><a href="http://localhost:4000/card1">View Credit/DebitCards</a></button>
+        <button class="left"><a href="http://localhost:4000/notes">View Personal Notes</a></button>
+    </div>
+    <div id="services">
+        <h1>Services</h1>
+        <p>Welcome to Meta Wallet, your all-in-one personal information management solution. Our app is designed to make your life easier, more organized, and secure.</p>
+    
+        <h2>Why Choose Meta Wallet:</h2>
+        <ul>
+            <li><strong>Comprehensive Security:</strong> Your personal data is of utmost importance, and we've taken every step to ensure its security. Meta Wallet uses advanced encryption techniques to protect your information from unauthorized access.</li>
+    
+            <li><strong>Convenience and Accessibility:</strong> Access your information anytime, anywhere. Whether you're at home, work, or on the go, Meta Wallet is there to provide you with instant access to your data.</li>
+    
+            <li><strong>User-Friendly Interface:</strong> Our intuitive interface makes it easy to store and manage your passwords, credit card details, ID proofs, and personal notes. You don't need to be tech-savvy to use Meta Wallet.</li>
+    
+            <li><strong>Data Organization:</strong> Say goodbye to the days of searching for lost passwords or misplaced documents. Meta Wallet helps you organize your information systematically, making it a breeze to find what you need when you need it.</li>
+    
+            <li><strong>Responsive Design:</strong> Our app is responsive and compatible with all devices, from desktops to smartphones and tablets. No matter the screen size, Meta Wallet adapts for your convenience.</li>
+        </ul>
+    
+        <h2>Key Features:</h2>
+        <ul>
+            <li><strong>User Profile Management:</strong> Edit your personal information, including your name and email, effortlessly.</li>
+    
+            <li><strong>Password Management:</strong> Safely store and manage all your passwords in one place.</li>
+    
+            <li><strong>Credit Card Management:</strong> Add and manage your credit and debit card details securely.</li>
+    
+            <li><strong>ID-Proof Management:</strong> Keep your identification documents in a safe digital vault, accessible whenever required.</li>
+    
+            <li><strong>Personal Notes:</strong> Create and save personal notes for quick reference.</li>
+    
+            <li><strong>User Authentication:</strong> Log in securely and protect your personal information from prying eyes.</li>
+    
+            <li><strong>Logout Feature:</strong> Easily log out when you're done, ensuring the security of your account.</li>
+        </ul>
+    
+        <p>Meta Wallet is more than just a personal information manager; it's your digital partner in keeping your life organized and secure. Join us today and experience the peace of mind that comes with efficient, secure, and convenient data management.</p>
+    </div>
+    
+
+    <script>
+        // JavaScript code to extract and display query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const fullName = urlParams.get("fullName");
+        const email = urlParams.get("email");
+
+        // Update the HTML elements with the user's name and email
+        document.getElementById("full-name").textContent = fullName;
+        document.getElementById("user-email").textContent = email;
+
+
+        const showServicesButton = document.getElementById("show-services");
+        const servicesContent = document.getElementById("services");
+
+        showServicesButton.addEventListener("click", function() {
+            servicesContent.classList.toggle("show");
+        });
+    </script>
+</body>
+</html>

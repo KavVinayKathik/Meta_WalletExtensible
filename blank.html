@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: cornsilk;
+        }
+        form{
+            color: black;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height:fit-content;
+            border: 3px solid black;
+            border-radius: 10px;
+            position: relative;
+            left: 800px;
+            
+            background-color: aliceblue;
+            align-items: center;
+            
+        }
+        input[type=text],input[type=submit],input[type=date]{
+            margin: 5px;
+            font-size: 20px;
+            width: 300px;
+            height: 40px;
+            align-items: center;
+
+        }
+        label{
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+        #add-credit-card-form{
+            display: flex;
+            flex-direction: row;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body><h1 style="font-size: 60px;">Meta Wallet</h1>
+    <div id="add-notes-form">
+        <h2 style="font-size: 40px;position: relative;top: 150px;left: 300px;">Note/File Manager</h2><br>
+        <h2 style="font-size: 35px;position: relative;bottom: 60px;">Save Your Files Here Securely!!!</h2>
+        <form action="newnotes" method="post" enctype="multipart/form-data">
+            
+            
+            <label for="notetitle">Title:</label>
+            <input type="text" id="notetitle" name="notetitle" required><br>
+            
+            <label for="notecontent">Content:</label>
+            <textarea id="notecontent" name="notecontent" rows="4" required></textarea><br>
+            
+            <label for="file">*** Upload Your File Below If Any ***</label><br>
+            <input type="file" id="file" name="file">
+            <input type="submit" value="Save Note">
+        </form>
+    </div>
+</body>
+</html>
